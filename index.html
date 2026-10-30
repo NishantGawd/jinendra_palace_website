@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hotel Jinendra Palace | Jaipur</title>
 <meta name="description" content="A comfortable stay in the heart of Jaipur. Experience heritage hospitality, warmth, and the architecture of Royal Rajasthan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,8 +16,8 @@
   --wa:https://wa.me/910000000000;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.6}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--body);background:var(--cream);color:var(--ink);overflow-x:clip;line-height:1.6;min-width:320px}
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 .ph{background:linear-gradient(135deg,#d9b9b6,#c9a29f);position:relative;overflow:hidden} /* image placeholder */
@@ -58,7 +58,7 @@ header.solid .btn{background:var(--maroon);border-color:var(--maroon)}
 header.solid .btn::before{background:var(--rose)}
 
 /* HERO */
-.hero{position:relative;height:100vh;min-height:640px;color:var(--cream);overflow:hidden;background:#3b1a22;display:flex;flex-direction:column;justify-content:space-between;padding:calc(66px + clamp(24px,5vh,60px)) 0 clamp(100px,15vh,140px)}
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;color:var(--cream);overflow:hidden;background:#3b1a22;display:flex;flex-direction:column;justify-content:space-between;padding:calc(66px + clamp(24px,5vh,60px)) 0 clamp(100px,15vh,140px)}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(83,25,40,.62),rgba(120,40,65,.55))}
 .hero::after{content:"";position:absolute;z-index:4;left:0;right:0;bottom:-1px;height:72px;background:var(--cream);border-radius:70px 70px 0 0}
@@ -198,6 +198,25 @@ footer.site .ph{position:absolute;inset:0;opacity:.22;background:linear-gradient
 .float b{font-weight:500}
 
 
+
+/* MOBILE MENU */
+.burger{display:none;width:40px;height:40px;background:none;border:0;color:inherit;cursor:pointer;position:relative;justify-self:end}
+.burger i{position:absolute;left:9px;right:9px;height:1.5px;background:currentColor;transition:transform .4s cubic-bezier(.7,0,.2,1),top .4s}
+.burger i:nth-child(1){top:15px}.burger i:nth-child(2){top:24px}
+body.menu-open .burger i:nth-child(1){top:20px;transform:rotate(45deg)}
+body.menu-open .burger i:nth-child(2){top:20px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:49;background:var(--maroon);color:var(--cream);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px var(--pad) 40px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+body.menu-open .menu{opacity:1;visibility:visible}
+body.menu-open{overflow:hidden}
+.menu a:not(.btn){font-family:var(--head);text-transform:uppercase;font-size:clamp(38px,12vw,60px);line-height:1.15;transform:translateY(20px);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .6s,color .3s}
+body.menu-open .menu a:not(.btn){transform:none;opacity:1}
+.menu a:nth-child(2){transition-delay:.05s}.menu a:nth-child(3){transition-delay:.1s}.menu a:nth-child(4){transition-delay:.15s}
+.menu a:not(.btn):hover{color:var(--rose-lt)}
+.menu .btn{margin-top:26px;text-align:center;align-self:stretch;font-size:15px;padding:16px}
+body.menu-open header{background:transparent!important;color:var(--cream)!important;backdrop-filter:none;border-color:transparent}
+body.menu-open header .logo span{color:var(--rose-lt)}
+body.menu-open .float{opacity:0;pointer-events:none}
+
 /* HOVER + TEXT EFFECTS */
 nav a{position:relative;padding:4px 0}
 nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.7,0,.2,1)}
@@ -218,28 +237,123 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 .rv:hover{transform:rotate(0) translateY(-10px) scale(1.03)!important;background:#f3c9cb;box-shadow:0 20px 40px rgba(83,25,40,.15)}
 .float{transition:background .4s,color .4s,transform .4s}.float:hover{background:var(--maroon);color:var(--cream);transform:translateY(-4px)}
 .chip{transition:background .3s,color .3s,transform .3s}.chip:hover{transform:translateY(-2px)}
-@media(hover:none){.hero-big,.hero h1{transform:translate(-50%,-50%)}.hero h1{transform:none}}
+@media(hover:none){h2:hover{letter-spacing:inherit;transform:none}.card:hover,.rv:hover{transform:none!important}.hero h1 span:hover{transform:none;color:inherit}.g-item:hover h4,.g-item:hover .m span:last-child{transform:none}}
 
 /* REVEAL */
 .rev{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}
 .rev.in{opacity:1;transform:none}
 
+/* ===== TABLET ===== */
+@media(max-width:1100px){
+  nav{gap:24px}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .hotel-card{width:48%}.room .card{width:42%}
+}
+/* ===== MOBILE ===== */
 @media(max-width:900px){
-  nav{display:none} header{grid-template-columns:1fr auto}
-  .hero-cta{right:20px;top:auto;bottom:17%;transform:none;width:150px}
-  .hero-cta .btn{font-size:12px;padding:12px 6px}
-  .hero h1{font-size:clamp(56px,20vw,120px)}
-  .intro,.loc{grid-template-columns:1fr}
-  .intro h2{grid-row:auto}
-  .hotel-stage{height:auto;display:flex;flex-direction:column;gap:20px}
-  .hotel-stage .main,.hotel-card,.hotel-stage .small{position:static;width:100%;height:320px}
-  .hotel-stage .small{height:200px}
-  .room{height:auto;flex-direction:column}
-  .room .ph{width:100%;height:300px}
-  .room .card,.room:nth-child(even) .card{position:static;width:100%}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .g-head,.rooms-head{flex-direction:column;align-items:flex-start;gap:20px}
-  .lb .ph{inset:80px 10px 150px}
+  :root{--pad:20px}
+  header{height:60px;grid-template-columns:1fr auto auto;gap:10px;padding:0 var(--pad)}
+  nav{display:none}
+  .burger{display:block;margin-right:-9px}
+  .logo{font-size:19px}
+  header .btn{padding:9px 14px;font-size:10px}
+  h2{font-size:clamp(38px,11.5vw,64px)}
+
+  /* hero */
+  .hero{height:auto;min-height:100vh;min-height:100svh;gap:28px;justify-content:flex-start;padding:calc(60px + 36px) 0 110px}
+  .hero-top{margin-bottom:auto}
+  .hero-big{font-size:34vw;top:40%}
+  .hero h1{font-size:clamp(54px,17.5vw,120px)}
+  .hero h1 span:nth-child(2){margin-left:0}
+  .hero h1 span:nth-child(3){margin-left:.3em}
+  .hero .eyebrow{font-size:12px}
+  .hero-sub h3{font-size:17px}.hero-sub p{font-size:14px}
+  .hero-cta{position:relative;z-index:3;right:auto;top:auto;transform:none;flex-direction:row;gap:10px;width:min(var(--max),calc(100% - 2*var(--pad)));margin-inline:auto}
+  .hero-cta .btn{flex:1;font-size:12px;padding:15px 6px;white-space:nowrap}
+  .scroll{display:none}
+  .hero::after{height:48px;border-radius:40px 40px 0 0}
+
+  /* intro */
+  .intro{grid-template-columns:minmax(0,1fr);gap:20px;padding:40px 0 70px}
+  .intro h2{grid-row:auto;font-size:clamp(38px,11.5vw,64px)}
+  .intro p{max-width:none;margin-top:0}
+  .intro .ph{max-width:none;aspect-ratio:4/3}
+
+  /* hotel */
+  .hotel{padding:70px 0 80px}
+  .hotel-stage{width:calc(100% - 2*var(--pad));height:auto;margin-top:44px;display:block}
+  .hotel-stage .main{position:relative;width:100%;height:auto;aspect-ratio:4/3}
+  .hotel-stage .small{position:absolute;right:10px;top:-28px;width:38%;height:auto;aspect-ratio:1.3;border-width:4px}
+  .hotel-card{position:relative;right:auto;top:auto;width:92%;margin:-40px 0 0 auto;padding:26px 22px}
+  .hotel-card h3{font-size:19px}
+
+  /* rooms */
+  .rooms{padding:40px 0 70px}
+  .rooms-head{flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:44px}
+  .rooms-head .btn{width:100%;text-align:center;white-space:normal;line-height:1.4}
+  .room{display:block;width:calc(100% - 2*var(--pad));height:auto;margin-bottom:56px}
+  .room .ph{width:100%;height:auto;aspect-ratio:4/3}
+  .room .card,.room:nth-child(even) .card{position:relative;top:auto;right:auto;left:auto;width:92%;margin:-40px 0 0 auto;padding:24px 22px}
+  .room:nth-child(even) .card{margin:-40px auto 0 0}
+  .room h3{font-size:23px}
+
+  /* gallery */
+  .gallery{padding-top:70px;padding-bottom:70px}
+  .g-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .g-head p{max-width:none}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin:28px calc(-1*var(--pad)) 22px;padding:0 var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;white-space:nowrap;padding:10px 14px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .g-item h4{font-size:15px}
+  .g-item .m{flex-wrap:wrap;gap:2px 8px}
+  .g-foot{flex-direction:column;align-items:stretch;gap:20px}
+  .g-foot div{flex-direction:column}
+  .g-foot .btn{text-align:center;width:100%}
+
+  /* lightbox */
+  .lb .ph{inset:64px 8px 200px}
+  .lb .x{top:10px;right:14px}
+  .lb button.nv{top:auto;bottom:210px;width:40px;height:40px}
+  .lb #prev{left:14px!important}.lb #next{right:14px!important}
+  .lb .cap{left:12px;right:12px;bottom:16px;width:auto;flex-direction:column;align-items:stretch;padding:18px}
+  .lb .cap .btn{text-align:center}
+
+  /* pink city + location */
+  .pink{padding:70px 0 80px}
+  .pink p{margin:16px 0 40px;font-size:15px}
+  .pink .stack{width:calc(100% - 2*var(--pad));gap:24px}
+  .pink .ph{aspect-ratio:4/3}
+  .loc{grid-template-columns:minmax(0,1fr);gap:36px;padding:70px 0}
+  .loc address{font-size:14px}
+
+  /* reviews */
+  .reviews{padding:80px 0 70px}
+  .track{margin-top:40px;gap:18px}
+  .rv{width:min(78vw,300px);padding:24px 20px}
+
+  /* footer */
+  .tick div{font-size:10px}
+  .f-big{font-size:58vw}
+  .f-main{padding:70px var(--pad) 110px}
+  .f-main h2{font-size:clamp(40px,12vw,64px)}
+  .f-main .btn{display:block;width:min(280px,100%);margin:12px auto 0;padding:16px}
+  .f-links{gap:14px 22px;margin-top:40px}
+
+  /* floating booking bar */
+  .float{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;padding:13px 14px;font-size:11px}
+}
+@media(max-width:380px){
+  .logo{font-size:17px}
+  header .btn{display:none}
+  .hero-cta{flex-direction:column}
+  .grid{gap:18px 10px}
+  .g-item p{display:none}
+}
+@media(min-width:601px) and (max-width:900px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero h1{font-size:clamp(80px,15vw,150px)}
+  .hotel-stage,.room,.pink .stack{width:min(640px,calc(100% - 2*var(--pad)))}
 }
 </style>
 </head>
@@ -249,7 +363,9 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   <a href="#top" class="logo">JINENDRA <span>PALACE</span></a>
   <nav><a href="#the-hotel">The Hotel</a><a href="#rooms">Rooms</a><a href="#gallery">Gallery</a><a href="#jaipur">Jaipur</a></nav>
   <a class="btn wa" href="#">Book Your Stay</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
 </header>
+<div class="menu" id="menu"><a href="#the-hotel">The Hotel</a><a href="#rooms">Rooms</a><a href="#gallery">Gallery</a><a href="#jaipur">Jaipur</a><a class="btn fill wa" href="#">Book Your Stay</a></div>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -480,6 +596,12 @@ if(fine){
     h1.style.setProperty('--x',(cx*18)+'px');h1.style.setProperty('--y',(cy*10)+'px');
     if(Math.abs(tx-cx)>.0005||Math.abs(ty-cy)>.0005||tx||ty)requestAnimationFrame(loop);else run=false}
 }
+
+/* Mobile menu */
+const setMenu=o=>{document.body.classList.toggle('menu-open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu')};
+burger.onclick=()=>setMenu(!document.body.classList.contains('menu-open'));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('resize',()=>{if(innerWidth>900)setMenu(false)});
 </script>
 </body>
 </html>
