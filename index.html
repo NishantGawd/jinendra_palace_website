@@ -519,7 +519,7 @@ header.solid{background:rgba(244,234,222,.82);backdrop-filter:blur(14px);-webkit
     <address>9 STATION ROAD<br>OPP. POLO VICTORY<br>SINDHI CAMP<br>JAIPUR, RAJASTHAN 302006</address>
     <dl><dt>Railway</dt><dd>1.5 km to Station</dd><dt>Metro</dt><dd>Sindhi Camp (Walkable)</dd></dl>
   </div>
-  <div class="ph rev" style="aspect-ratio:1.2"><img src="photos/facade2.jpg" alt="Hotel Jinendra Palace exterior" onerror="this.remove()"></div>
+  <div class="ph rev" style="aspect-ratio:1.2"><img src="photos/facade.jpg" alt="Hotel Jinendra Palace exterior" onerror="this.remove()"></div>
 </div></section>
 
 <!-- REVIEWS -->
@@ -562,7 +562,7 @@ ROOMS.forEach(r=>{r.photos=Array.from({length:r.count},(_,i)=>encodeURI(`${PHOTO
 /* Extra gallery groups. Files sit directly inside /photos (photos/1.jpg ... photos/facade.jpg). */
 const EXTRA=[
  {name:'More Rooms',desc:'A closer look at the comfortable rooms at Hotel Jinendra Palace.',book:'Book This Room',items:[1,2,3,4,5,6].map(n=>({file:`${n}.jpg`,title:'Room View'}))},
- {name:'Hotel & Lobby',desc:'Welcome to Hotel Jinendra Palace, in the heart of Jaipur.',book:'Book Your Stay',hotel:true,items:[{file:'facade.jpg',title:'Hotel Facade'},{file:'facade2.jpg',title:'Hotel Facade II'},{file:'hallway.jpg',title:'Hallway & Lobby'},{file:'reception.jpg',title:'Reception'}]}];
+ {name:'Hotel & Lobby',desc:'Welcome to Hotel Jinendra Palace, in the heart of Jaipur.',book:'Book Your Stay',hotel:true,items:[{file:'facade.jpg',title:'Hotel Facade'},{file:'hallway.jpg',title:'Hallway & Lobby'},{file:'reception.jpg',title:'Reception'}]}];
 const ALL=[
  ...ROOMS.flatMap((r,ri)=>r.photos.map((src,i)=>({src,room:r.name,title:r.name,desc:r.desc,ri,n:i+1,total:r.count,bookRoom:r.name,bookLabel:'Book This Room'}))),
  ...EXTRA.flatMap((e,j)=>e.items.map((it,i)=>({src:encodeURI(`${PHOTO_DIR}/${it.file}`),room:e.name,title:it.title,desc:e.desc,ri:ROOMS.length+j,n:i+1,total:e.items.length,cap:e.hotel?it.title:'',bookRoom:'',bookLabel:e.book})))];
