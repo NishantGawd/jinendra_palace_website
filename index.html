@@ -13,7 +13,7 @@
 :root{
   --cream:#F4EADE; --blush:#EFD5D4; --maroon:#531928; --rose:#B3546A; --rose-lt:#C27182;
   --ink:#2A1A1E; --head:'Oswald',sans-serif; --body:'Manrope',sans-serif;
-  --wa:https://wa.me/910000000000;
+  --wa:https://wa.me/917976367476;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -106,11 +106,19 @@ header.solid .btn::before{background:var(--rose)}
 .rooms{background:var(--blush);padding:60px 0 120px}
 .rooms-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:70px}
 .rooms-head h2{margin-top:8px}
-.room{position:relative;width:min(1100px,88vw);margin:0 auto 90px;height:420px;display:flex}
-.room .ph{width:66%;height:100%}
-.room .card{position:absolute;top:30px;right:0;width:36%;padding:30px}
-.room:nth-child(even) .ph{margin-left:auto}
+.room{--g:10px;position:relative;width:min(1100px,88vw);margin:0 auto 110px;display:block}
+.room-media{width:66%}
+.room .ph.main{width:100%;aspect-ratio:16/10;cursor:zoom-in}
+.room .ph.thumb{flex:1 1 0;min-width:0;aspect-ratio:var(--ar,4/3);cursor:pointer}
+.thumbs{display:flex;gap:var(--g);margin-top:var(--g)}
+.ph.thumb::after{content:"";position:absolute;inset:0;background:var(--maroon);opacity:0;transition:opacity .4s}
+.ph.thumb:hover::after{opacity:.28}
+.room .badge{position:absolute;left:14px;bottom:14px;z-index:2;background:rgba(244,234,222,.92);color:var(--maroon);font-family:var(--head);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;backdrop-filter:blur(6px)}
+.room .card{position:absolute;top:36px;right:0;width:36%;padding:32px 30px}
+.room .card .eyebrow{margin-bottom:10px}
+.room:nth-child(even) .room-media{margin-left:auto}
 .room:nth-child(even) .card{right:auto;left:0}
+.room .ph:focus-visible,.g-item:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
 .room h3{font-size:26px;font-weight:400;letter-spacing:.04em;color:var(--maroon);line-height:1.1}
 .room p{font-size:13px;font-weight:300;margin:14px 0 20px}
 .room dl{display:grid;grid-template-columns:90px 1fr;gap:14px 10px;font-size:12px;border-top:1px solid rgba(83,25,40,.12);padding-top:14px}
@@ -142,7 +150,7 @@ header.solid .btn::before{background:var(--rose)}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(30,20,20,.94);display:none}
 .lb.open{display:block}
 .lb .ph{position:absolute;inset:80px 90px 130px;background:transparent}
-.lb .ph img{object-fit:contain}
+.lb .ph img{object-fit:contain;transition:opacity .35s}
 .lb button.nv{position:absolute;top:50%;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;cursor:pointer;font-size:16px}
 .lb .cap{position:absolute;left:12%;bottom:50px;width:min(560px,76vw);background:var(--cream);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .lb .cap .eyebrow{font-size:9px}
@@ -151,12 +159,38 @@ header.solid .btn::before{background:var(--rose)}
 .lb .x{position:absolute;top:80px;right:30px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
 
 /* JAIPUR */
-.pink{background:linear-gradient(180deg,#B8607A,#D492A3);padding:100px 0 130px;color:var(--maroon)}
-.pink h2{font-size:clamp(40px,4.5vw,64px)}
-.pink p{max-width:380px;font-size:16px;font-weight:300;margin:20px 0 60px;color:#4a1625}
-.pink .stack{display:flex;flex-direction:column;gap:70px;width:min(1000px,88vw);margin:0 auto}
-.pink .ph{aspect-ratio:2.2}
-.pink .wrap{width:min(1000px,88vw);margin:0 auto;padding:0}
+/* JAIPUR CITY: banner + 3D slider */
+.pink{position:relative;background:linear-gradient(180deg,#C27182 0%,#CF8896 55%,#DDA3AF 100%);padding:clamp(90px,11vw,160px) 0 clamp(80px,9vw,130px);color:var(--maroon);overflow:hidden}
+.jp-title{text-align:center;color:var(--cream);font-size:clamp(54px,9.5vw,152px);line-height:.95;text-shadow:0 8px 40px rgba(83,25,40,.22);padding:0 var(--pad)}
+.jp-title:hover{letter-spacing:inherit;transform:none}
+.jp-title .ln{display:block;overflow:hidden;padding:.06em 0 .02em}
+.jp-title .ln>span{display:block;transform:translateY(112%);transition:transform 1.25s cubic-bezier(.2,.8,.2,1)}
+.jp-title.in .ln>span{transform:none}
+.jp-title.in .ln:nth-child(2)>span{transition-delay:.14s}
+.jp-banner{position:relative;margin-top:clamp(34px,5vw,70px);height:clamp(250px,46vw,640px);-webkit-mask-image:linear-gradient(#000 58%,transparent);mask-image:linear-gradient(#000 58%,transparent)}
+.jp-banner img{position:absolute;left:0;top:-9%;width:100%;height:118%;object-fit:cover;transform:translateY(var(--py,0%));will-change:transform}
+.jp-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(194,113,130,.38),rgba(194,113,130,.08));pointer-events:none}
+.jp-intro{margin-top:clamp(0px,2vw,24px)}
+.pink .jp-h{font-size:clamp(38px,4.6vw,66px)}
+.jp-intro p{max-width:460px;font-size:16px;font-weight:300;margin-top:16px;color:#4a1625}
+.jp-stage{--w:min(62vw,880px);--r:1.5;position:relative;height:calc(var(--w)/var(--r));margin-top:clamp(40px,5.5vw,70px);perspective:1800px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;outline:none}
+.jp-stage.drag{cursor:grabbing}
+.jp-slide{position:absolute;left:50%;top:0;width:var(--w);height:100%;margin-left:calc(var(--w)/-2);overflow:hidden;background:#c99ea3;box-shadow:0 30px 70px rgba(83,25,40,.3);transition:transform 1s cubic-bezier(.22,.8,.2,1),opacity .9s;will-change:transform,opacity}
+.jp-slide img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;transform:scale(1.12);transition:transform 1.8s cubic-bezier(.2,.8,.2,1)}
+.jp-slide.on img{transform:scale(1)}
+.jp-slide::after{content:"";position:absolute;inset:0;background:var(--maroon);opacity:.32;transition:opacity .9s;pointer-events:none}
+.jp-slide.on::after{opacity:0}
+.jp-ctrl{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:clamp(28px,4vw,48px)}
+.jp-count{font-family:var(--head);letter-spacing:.2em;font-size:13px;min-width:90px;color:var(--maroon)}
+.jp-count b{font-weight:500;font-size:22px}
+.jp-dots{display:flex;gap:10px;align-items:center}
+.jp-dot{position:relative;overflow:hidden;width:8px;height:8px;padding:0;border:0;border-radius:8px;background:rgba(83,25,40,.3);cursor:pointer;transition:width .5s cubic-bezier(.2,.8,.2,1),background .4s}
+.jp-dot:hover{background:rgba(83,25,40,.55)}
+.jp-dot.on{width:44px;background:rgba(83,25,40,.22)}
+.jp-dot i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--maroon)}
+.jp-arrows{display:flex;gap:10px;min-width:90px;justify-content:flex-end}
+.jp-arrow{width:46px;height:46px;border-radius:50%;border:1px solid rgba(83,25,40,.45);background:transparent;color:var(--maroon);cursor:pointer;font-size:18px;line-height:1;transition:background .35s,color .35s,transform .35s,border-color .35s}
+.jp-arrow:hover{background:var(--maroon);color:var(--cream);border-color:var(--maroon);transform:scale(1.07)}
 
 /* LOCATION */
 .loc-sec{background:var(--blush)}
@@ -228,8 +262,8 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 .f-links a:hover,.f-bot a:hover{opacity:1;color:var(--rose-lt)}
 .card{transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
 .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(83,25,40,.22)}
-.room .ph img,.hotel-stage .ph img,.pink .ph img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.room:hover .ph img,.hotel-stage:hover .main img,.pink .ph:hover img{transform:scale(1.05)}
+.room .ph img,.hotel-stage .ph img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.room .ph:hover img,.hotel-stage:hover .main img{transform:scale(1.05)}
 .g-item h4{transition:color .3s,transform .4s}
 .g-item:hover h4{color:var(--maroon);transform:translateX(6px)}
 .g-item .m span:last-child{transition:transform .35s}.g-item:hover .m span:last-child{transform:translateX(6px)}
@@ -291,10 +325,11 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   .rooms{padding:40px 0 70px}
   .rooms-head{flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:44px}
   .rooms-head .btn{width:100%;text-align:center;white-space:normal;line-height:1.4}
-  .room{display:block;width:calc(100% - 2*var(--pad));height:auto;margin-bottom:56px}
-  .room .ph{width:100%;height:auto;aspect-ratio:4/3}
-  .room .card,.room:nth-child(even) .card{position:relative;top:auto;right:auto;left:auto;width:92%;margin:-40px 0 0 auto;padding:24px 22px}
-  .room:nth-child(even) .card{margin:-40px auto 0 0}
+  .room{--g:8px;display:block;width:calc(100% - 2*var(--pad));margin-bottom:64px}
+  .room-media{width:100%}
+  .room .ph.main{aspect-ratio:4/3}
+  .room .badge{left:10px;bottom:10px;font-size:9px;padding:6px 10px}
+  .room .card,.room:nth-child(even) .card{position:relative;top:auto;right:auto;left:auto;width:100%;margin:14px 0 0;padding:26px 22px}
   .room h3{font-size:23px}
 
   /* gallery */
@@ -320,10 +355,12 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   .lb .cap .btn{text-align:center}
 
   /* pink city + location */
-  .pink{padding:70px 0 80px}
-  .pink p{margin:16px 0 40px;font-size:15px}
-  .pink .stack{width:calc(100% - 2*var(--pad));gap:24px}
-  .pink .ph{aspect-ratio:4/3}
+  .pink{padding:80px 0 70px}
+  .jp-title{font-size:clamp(50px,15vw,110px)}
+  .jp-banner{height:clamp(220px,62vw,420px)}
+  .jp-intro p{font-size:15px}
+  .jp-stage{--w:min(74vw,640px);--r:1.35}
+  .jp-ctrl{margin-top:26px}
   .loc{grid-template-columns:minmax(0,1fr);gap:36px;padding:70px 0}
   .loc address{font-size:14px}
 
@@ -343,6 +380,11 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   /* floating booking bar */
   .float{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;padding:13px 14px;font-size:11px}
 }
+@media(max-width:600px){
+  .jp-stage{--w:78vw;--r:.86}
+  .jp-arrows{display:none}
+  .jp-count{min-width:0}
+}
 @media(max-width:380px){
   .logo{font-size:17px}
   header .btn{display:none}
@@ -353,8 +395,29 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 @media(min-width:601px) and (max-width:900px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .hero h1{font-size:clamp(80px,15vw,150px)}
-  .hotel-stage,.room,.pink .stack{width:min(640px,calc(100% - 2*var(--pad)))}
+  .hotel-stage,.room{width:min(640px,calc(100% - 2*var(--pad)))}
 }
+
+/* ===== HERO TEXT FIX (desktop): matches original proportions ===== */
+@media(min-width:901px){
+  .hero{height:auto;min-height:100vh;min-height:100svh;justify-content:flex-start;gap:clamp(28px,5vh,56px);padding:calc(66px + 3vh) 0 clamp(110px,16vh,150px)}
+  .hero h1{font-size:clamp(64px,9.4vw,180px);line-height:.87;letter-spacing:-.01em;color:#f4eade}
+  .hero h1 span:nth-child(2){margin-left:-.34em}
+  .hero h1 span:nth-child(3){margin-left:.37em}
+  .hero-big{font-size:clamp(200px,23vw,440px);font-weight:500;letter-spacing:.01em;color:rgba(244,234,222,.17);top:50%}
+  .hero-sub{max-width:420px}
+}
+
+/* ===== HEADER: transparent at top -> translucent on scroll ===== */
+header{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent;transition:background .45s,backdrop-filter .45s,color .45s,border-color .45s}
+header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(rgba(30,10,16,.35),transparent);transition:opacity .45s}
+header.scrolled{background:rgba(83,25,40,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:rgba(244,234,222,.12)}
+header.scrolled::before{opacity:0}
+header.solid{background:rgba(244,234,222,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:rgba(83,25,40,.1);color:var(--maroon)}
+
+/* ===== HERO: push eyebrow + headline down ===== */
+@media(min-width:901px){.hero{padding-top:calc(66px + 13vh)}}
+@media(max-width:900px){.hero{padding-top:calc(60px + 64px)}}
 </style>
 </head>
 <body>
@@ -373,14 +436,7 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   <div class="hero-big" id="heroBig">JAIPUR</div>
   <div class="hero-top">
     <div class="eyebrow">JAIPUR · RAJASTHAN</div>
-    <h1 id="heroH1"><span>Stay</span><span>in the</span><span>Pink City</span></h1>
-  </div>
-  <div class="hero-bot">
-    <div class="hero-sub">
-      <h3>HOTEL JINENDRA PALACE</h3>
-      <p>A comfortable stay in the heart of Jaipur, close to the city's heritage, streets and stories.</p>
-      <address>9 STATION ROAD<br>OPP. POLO VICTORY<br>SINDHI CAMP · JAIPUR</address>
-    </div>
+    <h1 id="heroH1"><span>Stay</span><span style="color: lightgrey;">in the</span><span>Pink City</span></h1>
   </div>
   <div class="hero-cta">
     <a class="btn fill mag wa" href="#">Book Your Stay →</a>
@@ -393,15 +449,14 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 <section class="intro">
   <h2 class="rev">A place to pause between the journey and the city.</h2>
   <div class="rev"><p>Hotel Jinendra Palace offers a comfortable base for discovering Jaipur, with the city's streets, heritage and landmarks within easy reach.</p></div>
-  <div class="ph rev"><img src="images/hotel/image_11.jpg" alt="Jaipur architectural detail" onerror="this.remove()"></div>
+  <div class="ph rev"><img src="photos/facade.jpg" alt="Hotel Jinendra Palace facade" onerror="this.remove()"></div>
 </section>
 
 <!-- THE HOTEL -->
 <section class="hotel" id="the-hotel">
   <h2 class="rev">The Hotel</h2>
   <div class="hotel-stage rev">
-    <div class="ph main"><img src="images/hotel/image_2.jpg" alt="Hotel Jinendra Palace Exterior" onerror="this.remove()"></div>
-    <div class="ph small"><img src="images/rooms/PHOTO-2026-08-13-14-44-21_3.jpg" alt="Heritage Details" onerror="this.remove()"></div>
+    <div class="ph main"><img src="photos/reception.jpg" alt="Hotel Jinendra Palace reception" onerror="this.remove()"></div>
     <div class="card hotel-card">
       <h3>A comfortable Jaipur stay, made for discovering the city.</h3>
       <p>Experience the warmth of Rajasthani hospitality. Our property is designed to provide a restful environment after a day of exploring the Pink City.</p>
@@ -415,7 +470,7 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 <section class="rooms" id="rooms">
   <div class="wrap rooms-head">
     <div><div class="eyebrow">HERITAGE SANCTUARIES</div><h2>Stay a while.</h2></div>
-    <a class="btn line" href="#gallery">View complete room archive (34 photos) →</a>
+    <a class="btn line" href="#gallery" id="archiveBtn">View all room photos →</a>
   </div>
   <div id="roomList"></div>
 </section>
@@ -424,12 +479,12 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 <section class="gallery wrap" id="gallery">
   <div class="g-head">
     <div><div class="eyebrow">ACCOMMODATION ARCHIVE</div><h2>Room Gallery</h2></div>
-    <p>Browse authentic high-resolution photographs of all room categories — Deluxe Double, Triple Duplex, and Family Duplex chambers.</p>
+    <p>Browse photographs of every room category — Classic Triple, Deluxe Double, Superior Double and the Family Four Bed Room — along with the hotel's lobby and facade.</p>
   </div>
   <div class="chips" id="chips"></div>
   <div class="grid" id="grid"></div>
   <div class="g-foot"><span id="count"></span>
-    <div><a class="btn line" href="#gallery">Open full room archive ↗</a><a class="btn fill wa" href="#" style="padding:12px 20px;font-size:11px">Book on WhatsApp</a></div>
+    <div><a class="btn fill wa" href="#" style="padding:12px 20px;font-size:11px">Book on WhatsApp</a></div>
   </div>
 </section>
 
@@ -439,20 +494,22 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
   <button class="nv" id="prev" style="left:50px">‹</button>
   <button class="nv" id="next" style="right:50px">›</button>
   <div class="ph"><img id="lbimg" src="" alt=""></div>
-  <div class="cap"><div><div class="eyebrow" id="lbc"></div><h4 id="lbt"></h4><p id="lbd"></p></div><a class="btn dark wa" href="#" style="font-size:11px;white-space:nowrap">Book This Room</a></div>
+  <div class="cap"><div><div class="eyebrow" id="lbc"></div><h4 id="lbt"></h4><p id="lbd"></p></div><a class="btn dark wa" id="lbbook" href="#" style="font-size:11px;white-space:nowrap">Book This Room</a></div>
 </div>
 
 <!-- JAIPUR -->
 <section class="pink" id="jaipur">
-  <div class="wrap">
-    <h2>The Pink City</h2>
+  <h2 class="jp-title" id="jpTitle"><span class="ln"><span>Jaipur</span></span><span class="ln"><span>is waiting.</span></span></h2>
+  <div class="jp-banner ph" id="jpBanner"></div>
+  <div class="wrap jp-intro rev">
+    <h2 class="jp-h">The Pink City</h2>
     <p>From the pink facades of the old city to palace courtyards, bustling bazaars and quiet evenings around Jal Mahal, Jaipur rewards curiosity.</p>
   </div>
-  <div class="stack">
-    <div class="ph rev"><img src="images/hotel/jaipur_waiting.png" alt="Amer Fort Jaipur" onerror="this.remove()"></div>
-    <div class="ph rev"><img src="images/jaipur/sunset.jpg" alt="Historical architecture at sunset" onerror="this.remove()"></div>
-    <div class="ph rev"><img src="images/jaipur/amer.jpg" alt="Amer Fort details" onerror="this.remove()"></div>
-    <div class="ph rev"><img src="images/jaipur/hawa-mahal.jpg" alt="Hawa Mahal Courtyard" onerror="this.remove()"></div>
+  <div class="rev"><div class="jp-stage" id="jpStage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Photos of Jaipur"></div></div>
+  <div class="wrap jp-ctrl">
+    <div class="jp-count" id="jpCount"></div>
+    <div class="jp-dots" id="jpDots"></div>
+    <div class="jp-arrows"><button class="jp-arrow" id="jpPrev" aria-label="Previous photo">←</button><button class="jp-arrow" id="jpNext" aria-label="Next photo">→</button></div>
   </div>
 </section>
 
@@ -462,7 +519,7 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
     <address>9 STATION ROAD<br>OPP. POLO VICTORY<br>SINDHI CAMP<br>JAIPUR, RAJASTHAN 302006</address>
     <dl><dt>Railway</dt><dd>1.5 km to Station</dd><dt>Metro</dt><dd>Sindhi Camp (Walkable)</dd></dl>
   </div>
-  <div class="ph rev" style="aspect-ratio:1.2"><img src="images/hotel/image_6.jpg" alt="Jaipur Architecture" onerror="this.remove()"></div>
+  <div class="ph rev" style="aspect-ratio:1.2"><img src="photos/facade2.jpg" alt="Hotel Jinendra Palace exterior" onerror="this.remove()"></div>
 </div></section>
 
 <!-- REVIEWS -->
@@ -488,73 +545,70 @@ h2:hover{letter-spacing:.03em;transform:translateX(8px)}
 <a class="float wa" href="#"><span>WhatsApp</span><span>|</span><b>Book Your Stay →</b></a>
 
 <script>
-const WA='https://wa.me/910000000000';
+const WA='https://wa.me/917976367476';
 const msg=(room='')=>`${WA}?text=`+encodeURIComponent(`Hello Hotel Jinendra Palace,\nI would like to enquire about booking a room.\n\nCheck-in: \nCheck-out: \nGuests: \nRoom type: ${room}\n\nPlease share availability and tariff.`);
 document.querySelectorAll('.wa').forEach(a=>a.href=msg());
 
-/* Rooms */
-const rooms=[
- ['DELUXE DOUBLE ROOM','A spacious and elegantly appointed room offering comfort and quiet relaxation after a day in the city.','2 Guests',['Air Conditioning','Wi-Fi','Room Service'],'hotel/image_4.jpg'],
- ['TRIPLE DUPLEX ROOM','Ideal for small families or groups, this multi-level room offers extra space and privacy with a unique layout.','3 Guests',['Air Conditioning','Wi-Fi','Room Service','Extra Bed'],'hotel/image_6.jpg'],
- ['FAMILY DUPLEX ROOM','Upgraded comfort with additional space across two levels and premium furnishings for an enhanced heritage stay.','4 Guests',['Air Conditioning','Wi-Fi','Room Service','Laundry','Lounge Area'],'hotel/image_5.jpg']];
-roomList.innerHTML=rooms.map(r=>`<div class="room rev"><div class="ph"><img src="images/${r[4]}" alt="${r[0]}" onerror="this.remove()"></div>
-<div class="card"><h3>${r[0]}</h3><p>${r[1]}</p><dl><dt>Occupancy</dt><dd>${r[2]}</dd><dt>Amenities</dt><dd>${r[3].join('<br>')}</dd></dl>
-<a class="btn fill" href="${msg(r[0])}">Check Availability →</a></div></div>`).join('');
+/* ===== ROOMS + PHOTOS =====
+   Photos live in /photos/<folder>/1.jpg, 2.jpg ... Folder names are case-sensitive on most web servers,
+   so keep `folder` exactly as it is named on disk. To add a photo: drop it in the folder and raise `count`. */
+const PHOTO_DIR='photos';
+const ROOMS=[
+ {name:'Classic Triple',folder:'Classic triple',count:2,guests:'3 Guests',amen:['Air Conditioning','Wi-Fi','Room Service'],desc:'A comfortable, well-appointed room for small families or groups travelling together.'},
+ {name:'Deluxe Double',folder:'Deluxe Double',count:4,guests:'2 Guests',amen:['Air Conditioning','Wi-Fi','Room Service'],desc:'A spacious and elegantly appointed room offering comfort and quiet relaxation after a day in the city.'},
+ {name:'Family Four Bed Room',folder:'Family Four Bed Room',count:4,guests:'4 Guests',amen:['Air Conditioning','Wi-Fi','Room Service','Laundry'],desc:'Generous space for the whole family, with four beds and room to settle in comfortably.'},
+ {name:'Superior Double',folder:'Superior Double',count:4,guests:'2 Guests',amen:['Air Conditioning','Wi-Fi','Room Service'],desc:'An upgraded double room with refined furnishings and a calm, restful atmosphere.'}];
+ROOMS.forEach(r=>{r.photos=Array.from({length:r.count},(_,i)=>encodeURI(`${PHOTO_DIR}/${r.folder}/${i+1}.jpg`))});
+/* Extra gallery groups. Files sit directly inside /photos (photos/1.jpg ... photos/facade.jpg). */
+const EXTRA=[
+ {name:'More Rooms',desc:'A closer look at the comfortable rooms at Hotel Jinendra Palace.',book:'Book This Room',items:[1,2,3,4,5,6].map(n=>({file:`${n}.jpg`,title:'Room View'}))},
+ {name:'Hotel & Lobby',desc:'Welcome to Hotel Jinendra Palace, in the heart of Jaipur.',book:'Book Your Stay',hotel:true,items:[{file:'facade.jpg',title:'Hotel Facade'},{file:'facade2.jpg',title:'Hotel Facade II'},{file:'hallway.jpg',title:'Hallway & Lobby'},{file:'reception.jpg',title:'Reception'}]}];
+const ALL=[
+ ...ROOMS.flatMap((r,ri)=>r.photos.map((src,i)=>({src,room:r.name,title:r.name,desc:r.desc,ri,n:i+1,total:r.count,bookRoom:r.name,bookLabel:'Book This Room'}))),
+ ...EXTRA.flatMap((e,j)=>e.items.map((it,i)=>({src:encodeURI(`${PHOTO_DIR}/${it.file}`),room:e.name,title:it.title,desc:e.desc,ri:ROOMS.length+j,n:i+1,total:e.items.length,cap:e.hotel?it.title:'',bookRoom:'',bookLabel:e.book})))];
+const im=(src,alt)=>`<img src="${src}" alt="${alt}" loading="lazy" decoding="async" onerror="this.remove()">`;
+archiveBtn.textContent=`View all photos (${ALL.length}) →`;
 
-/* Gallery data: [file#, category, title, description, room label] */
-const D='Deluxe Double Room',T='Triple Duplex Room',F='Family Duplex Room',H='Heritage Suites & Views';
-const G=[
-['4','Deluxe','Deluxe Double Suite','Plush king bedding with ambient bedside sconces and warm Rajasthani woodwork.',D],
-['5','Deluxe','Deluxe Bed Chamber','Designed for tranquil relaxation with custom furnishings and soft heritage lighting.',D],
-['6','Duplex','Triple Duplex Ground Level','Two-tiered architecture offering separate sleeping zones and comfortable seating.',T],
-['7','Duplex','Triple Duplex Elevated View','Spacious layout tailored for groups and friends visiting Jaipur.',T],
-['19','Family','Family Duplex Grand Chamber','Generous multi-level family suite with dedicated lounge and dressing spaces.',F],
-['20','Family','Family Suite Upper Tier','Multi-level sleeping quarters ensuring complete privacy and comfort for 4 guests.',F],
-['21','Family','Family Duplex Panoramic Vista','Airy atmosphere with heritage motifs and modern room amenities.',F],
-['3','Heritage','Heritage Entryway & Carvings','Exquisite Rajasthani jharokha detailing and arched doorways.',H],
-['14','Deluxe','Deluxe Workspace & Lounge','Dedicated reading nook and seating corner for post-sightseeing unwinding.',D],
-['15','Deluxe','Sunlit Deluxe Interior','Generous window illumination highlighting the dusty rose room palette.',D],
-['8','Duplex','Triple Suite Alcove','Custom built-in cabinetry and peaceful sleeping quarters.',T],
-['9','Duplex','Modern Attached Bath & Vanity','Pristine, sanitized en-suite bathroom with hot running water and fresh linens.',T],
-['23','Heritage','Heritage Suite Living Lounge','Private reception sitting area with hand-carved coffee tables and chairs.',H],
-['24','Deluxe','Deluxe Comfort Quarters','Premium spring mattress dressed in crisp white hotel linens.',D],
-['25','Deluxe','Full-Length Wardrobe & Dressing','Spacious wardrobes and vanity mirror for hassle-free morning prep.',D],
-['26','Deluxe','Evening Heritage Glow','Warm architectural lighting creating a tranquil haven after bustling bazaar trips.',D],
-['27','Duplex','Triple Loft Spatial Detail','High ceilings and tiered spatial flow granting every traveler room to breathe.',T],
-['28','Duplex','Triple Suite Bedding','Configured with comfortable twin and queen bedding options.',T],
-['29','Duplex','In-Room Entertainment Zone','Wall-mounted LED TV and climate control in all duplex chambers.',T],
-['30','Duplex','Jaipur City Window Vista','Bright natural daylight with privacy drapes and pleasant city surroundings.',T],
-['31','Family','Family Suite Ground Sanctuary','Lower tier featuring double bedding and easy ground accessibility.',F],
-['32','Family','Family Mezzanine Quarters','Upper tier mezzanine providing a secluded cozy zone for kids or couples.',F],
-['33','Family','Family Executive Suite','The premier multi-bed family experience in Hotel Jinendra Palace.',F],
-['34','Heritage','Heritage Jharokha Corner','Classical pink palace styling celebrating ancient Jaipur royal architecture.',H],
-['35','Heritage','Palace Corridor & Balcony','Wide marble-finish corridors leading directly to peaceful open-air balconies.',H],
-['36','Heritage','Private Courtyard Balcony','Enjoy morning chai and evening breezes overlooking the Pink City.',H],
-['37','Heritage','Rooftop & Terrace Pavilion','Panoramic views of the Jaipur sky and surrounding heritage neighborhood.',H],
-['','Heritage','Lobby & Heritage Reception','24-hour front desk welcoming guests with genuine Rajasthani warmth.',H],
-['1','Deluxe','En-suite Marble Bathroom','Modern hygiene standards, spotless fixtures, and high-pressure shower.',D],
-['2','Deluxe','Sanitized Shower Suite','Deep cleaned daily with complimentary toiletries and fresh towels.',D],
-['12','Heritage','Heritage Arch Corridor','Intricate jaali patterns framing the journey to your private chamber.',H],
-['13','Heritage','Palace Exterior & Portico','Conveniently located near Sindhi Camp for effortless Jaipur sightseeing.',H],
-['17','Deluxe','Wood-Carved Headboard Detail','Traditional artisan woodwork reflecting centuries-old crafts.',D],
-['18','Family','Duplex Spiral Mezzanine Access','Direct interior staircase connecting lower living area to upper bedroom tier.',F]];
-const src=g=>`images/rooms/PHOTO-2026-08-13-14-44-21${g[0]?'_'+g[0]:''}.jpg`;
-const filters=[['all','All Rooms',34],['Deluxe','Deluxe Double',10],['Duplex','Triple Duplex',8],['Family','Family Duplex',7],['Heritage','Suites & Living',9]];
-let cur='all',list=G,idx=0;
-chips.innerHTML=filters.map(f=>`<button class="chip ${f[0]=='all'?'on':''}" data-f="${f[0]}">${f[1]} (${f[2]})</button>`).join('');
+roomList.innerHTML=ROOMS.map((r,ri)=>`<article class="room rev"><div class="room-media">
+ <div class="ph main" data-r="${ri}" data-i="0" role="button" tabindex="0" aria-label="View ${r.name} photos">${im(r.photos[0],r.name+' – photo 1')}<span class="badge">${r.count} Photos</span></div>
+ ${r.count>1?`<div class="thumbs" style="--ar:${({1:'21/9',2:'16/10'})[r.count-1]||'4/3'}">${r.photos.slice(1).map((s,i)=>`<div class="ph thumb" data-r="${ri}" data-i="${i+1}" role="button" tabindex="0" aria-label="${r.name} photo ${i+2}">${im(s,r.name+' – photo '+(i+2))}</div>`).join('')}</div>`:''}
+ </div>
+ <div class="card"><div class="eyebrow">ROOM ${String(ri+1).padStart(2,'0')}</div><h3>${r.name}</h3><p>${r.desc}</p>
+ <dl><dt>Occupancy</dt><dd>${r.guests}</dd><dt>Amenities</dt><dd>${r.amen.join('<br>')}</dd></dl>
+ <a class="btn fill" href="${msg(r.name)}">Check Availability →</a></div></article>`).join('');
+const roomOpen=e=>{const el=e.target.closest('[data-r]');if(el)openLb(+el.dataset.i,ALL.filter(g=>g.ri==el.dataset.r))};
+roomList.onclick=roomOpen;
+roomList.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();roomOpen(e)}};
+
+/* ===== GALLERY ===== */
+let cur='all',gl=ALL,lbList=ALL,idx=0;
+chips.innerHTML=[{k:'all',l:'All Photos',n:ALL.length},...ROOMS.map((r,i)=>({k:i,l:r.name,n:r.count})),...EXTRA.map((e,j)=>({k:ROOMS.length+j,l:e.name,n:e.items.length}))].map(f=>`<button class="chip ${f.k=='all'?'on':''}" data-f="${f.k}">${f.l} (${f.n})</button>`).join('');
 function render(){
-  list=cur=='all'?G:G.filter(g=>g[1]==cur);
-  grid.innerHTML=list.map((g,i)=>`<div class="g-item" data-i="${i}"><div class="ph"><span class="tag">${g[1]}</span><img src="${src(g)}" alt="${g[2]}" loading="lazy" onerror="this.remove()"></div>
-  <h4>${g[2]}</h4><p>${g[3]}</p><div class="m"><span>${g[4]}</span><span>View Photo →</span></div></div>`).join('');
-  count.innerHTML=`Showing all <b>${list.length}</b> photos in this collection.`;
+  gl=cur=='all'?ALL:ALL.filter(g=>g.ri==cur);
+  grid.innerHTML=gl.map((g,i)=>`<div class="g-item" data-i="${i}" role="button" tabindex="0" aria-label="View ${g.title} photo ${g.n}"><div class="ph">${im(g.src,g.title+' – photo '+g.n)}</div>
+  <h4>${g.title}</h4><div class="m"><span>Photo ${g.n} / ${g.total}</span><span>View Photo →</span></div></div>`).join('');
+  count.innerHTML=`Showing <b>${gl.length}</b> photos in this collection.`;
 }
 render();
 chips.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;cur=b.dataset.f;document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c==b));render()};
-grid.onclick=e=>{const it=e.target.closest('.g-item');if(it)open(+it.dataset.i)};
-function open(i){idx=(i+list.length)%list.length;const g=list[idx];lbimg.src=src(g);lbc.textContent=g[4];lbt.textContent=g[2];lbd.textContent=g[3];lb.classList.add('open')}
-prev.onclick=()=>open(idx-1);next.onclick=()=>open(idx+1);lbx.onclick=()=>lb.classList.remove('open');
-lb.onclick=e=>{if(e.target==lb)lb.classList.remove('open')};
-document.onkeydown=e=>{if(!lb.classList.contains('open'))return;if(e.key=='Escape')lb.classList.remove('open');if(e.key=='ArrowLeft')open(idx-1);if(e.key=='ArrowRight')open(idx+1)};
+const gridOpen=e=>{const it=e.target.closest('.g-item');if(it)openLb(+it.dataset.i,gl)};
+grid.onclick=gridOpen;
+grid.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();gridOpen(e)}};
+
+/* ===== LIGHTBOX ===== */
+function openLb(i,l){
+  if(l)lbList=l; idx=(i+lbList.length)%lbList.length; const g=lbList[idx];
+  lbimg.style.opacity=0; lbimg.onload=lbimg.onerror=()=>lbimg.style.opacity=1;
+  lbimg.src=g.src; lbimg.alt=g.room+' – photo '+g.n;
+  lbc.textContent=g.room; lbt.textContent=g.cap||`Photo ${g.n} of ${g.total}`; lbd.textContent=g.desc; lbbook.href=msg(g.bookRoom); (lbbook.querySelector('.t')||lbbook).textContent=g.bookLabel;
+  lb.classList.add('open'); document.body.style.overflow='hidden';
+}
+const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow=''};
+prev.onclick=()=>openLb(idx-1);next.onclick=()=>openLb(idx+1);lbx.onclick=closeLb;
+lb.onclick=e=>{if(e.target==lb||e.target.classList.contains('ph'))closeLb()};
+document.onkeydown=e=>{if(!lb.classList.contains('open'))return;if(e.key=='Escape')closeLb();if(e.key=='ArrowLeft')openLb(idx-1);if(e.key=='ArrowRight')openLb(idx+1)};
+let sx=0;lb.addEventListener('touchstart',e=>{sx=e.changedTouches[0].clientX},{passive:true});
+lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)openLb(idx+(d<0?1:-1))},{passive:true});
 
 /* Reviews */
 const R=[['A true heritage experience. The architecture blends perfectly with the Pink City vibe, and the hospitality is incredibly warm.','Rahul S.','MakeMyTrip'],
@@ -571,10 +625,81 @@ tick.innerHTML=words+words+words+words;
 
 /* Header + reveal */
 const hd=document.getElementById('hd');
-const onScroll=()=>hd.classList.toggle('solid',scrollY>window.innerHeight*.8);
+const onScroll=()=>{hd.classList.toggle('scrolled',scrollY>20);hd.classList.toggle('solid',scrollY>window.innerHeight*.8)};
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+/* ===== JAIPUR CITY: banner parallax + 3D slider =====
+   Photos live in /photos/jaipur/. Edit the file names below to change what is shown. */
+const JAIPUR={banner:'1.avif',slides:['2.jpg','3.webp','4.webp','5.webp','6.webp'],delay:5000};
+(()=>{
+  const jp=f=>encodeURI(`${PHOTO_DIR}/jaipur/${f}`);
+  const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  io.observe(document.getElementById('jpTitle'));
+
+  /* banner */
+  const ban=document.getElementById('jpBanner');
+  ban.innerHTML=`<img src="${jp(JAIPUR.banner)}" alt="Amer Fort and the hills around Jaipur" decoding="async" onerror="this.remove()">`;
+  let tick=false;
+  const par=()=>{tick=false;const img=ban.querySelector('img');if(!img||still)return;const r=ban.getBoundingClientRect(),vh=innerHeight;
+    if(r.bottom<-60||r.top>vh+60)return;const p=((r.top+r.height/2)-vh/2)/(vh/2+r.height/2);img.style.setProperty('--py',(p*-7).toFixed(2)+'%')};
+  addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(par)}},{passive:true});par();
+
+  /* slider */
+  const stage=document.getElementById('jpStage'),dots=document.getElementById('jpDots'),cnt=document.getElementById('jpCount');
+  const S=JAIPUR.slides,n=S.length,pad2=x=>String(x).padStart(2,'0');
+  stage.innerHTML=S.map((f,i)=>`<div class="jp-slide" data-i="${i}" role="group" aria-label="Photo ${i+1} of ${n}"><img src="${jp(f)}" alt="Jaipur – photo ${i+1}" ${i?'loading="lazy"':''} decoding="async" draggable="false" onerror="this.remove()"></div>`).join('');
+  dots.innerHTML=S.map((_,i)=>`<button class="jp-dot" data-i="${i}" aria-label="Go to photo ${i+1}"><i></i></button>`).join('');
+  const slides=[...stage.children],dotEls=[...dots.children];
+  let a=0,timer=null,paused=false,inView=false;
+
+  function layout(first){
+    slides.forEach((el,i)=>{
+      let d=((i-a)%n+n)%n; if(d>n/2)d-=n;
+      const ad=Math.abs(d),old=el.dataset.d;
+      const jump=old!==undefined&&Math.abs(d-old)>2;      /* wrapping around: move unseen, no streak */
+      if(jump||first){el.style.transition='none'}
+      el.style.transform=`translateX(${d*58}%) translateZ(${-ad*150}px) rotateY(${-d*16}deg) scale(${1-.09*ad})`;
+      el.style.opacity=ad>1?0:1;
+      el.style.zIndex=10-ad;
+      el.style.pointerEvents=ad>1?'none':'auto';
+      el.dataset.d=d; el.classList.toggle('on',d===0);
+      el.setAttribute('aria-hidden',d===0?'false':'true');
+      if(jump||first){void el.offsetWidth;el.style.transition=''}
+    });
+    dotEls.forEach((el,i)=>el.classList.toggle('on',i===a));
+    cnt.innerHTML=`<b>${pad2(a+1)}</b> / ${pad2(n)}`;
+  }
+  function progress(run){
+    dotEls.forEach((el,i)=>{const f=el.firstElementChild;f.style.transition='none';f.style.width='0';
+      if(run&&i===a){void f.offsetWidth;f.style.transition=`width ${JAIPUR.delay}ms linear`;f.style.width='100%'}});
+  }
+  function restart(){
+    clearTimeout(timer); progress(false);
+    if(paused||!inView)return;
+    progress(true); timer=setTimeout(()=>go(a+1),JAIPUR.delay);
+  }
+  function go(i){a=((i%n)+n)%n;layout();restart()}
+  layout(true);
+
+  document.getElementById('jpPrev').onclick=()=>go(a-1);
+  document.getElementById('jpNext').onclick=()=>go(a+1);
+  dots.onclick=e=>{const b=e.target.closest('.jp-dot');if(b)go(+b.dataset.i)};
+  stage.addEventListener('keydown',e=>{if(e.key=='ArrowLeft')go(a-1);if(e.key=='ArrowRight')go(a+1)});
+
+  /* drag / swipe, tap a side photo to bring it forward */
+  let sx=0,dx=0,down=false;
+  stage.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;dx=0;stage.classList.add('drag')});
+  addEventListener('pointermove',e=>{if(down)dx=e.clientX-sx});
+  addEventListener('pointerup',e=>{if(!down)return;down=false;stage.classList.remove('drag');
+    if(Math.abs(dx)>50)go(a+(dx<0?1:-1));
+    else if(Math.abs(dx)<6){const sl=e.target.closest&&e.target.closest('.jp-slide');if(sl&&+sl.dataset.i!==a)go(+sl.dataset.i)}});
+
+  /* autoplay only while visible; pause on hover / hidden tab */
+  new IntersectionObserver(es=>{inView=es[0].isIntersecting;restart()},{threshold:.35}).observe(stage);
+  document.addEventListener('visibilitychange',()=>{paused=document.hidden;restart()});
+})();
 
 /* Magnetic buttons: wrap label, pull toward cursor */
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches;
